@@ -336,7 +336,7 @@ public class BottomPanel extends JPanel {
 					progressSlider.setValue(curSec);
 					Thread.sleep(1000);
 				} catch (Exception e) {
-//					e.printStackTrace();
+					// e.printStackTrace();
 				}
 			}
 		}

@@ -143,7 +143,7 @@ public class PlayService extends Thread{
 		}
 	}
 	
-	
+	// **********************************************************************
 	
 	public PlayBack getPlayer() {
 		return player;

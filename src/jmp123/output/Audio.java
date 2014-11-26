@@ -36,7 +36,7 @@ import jmp123.decoder.IAudio;
  * 
  */
 public class Audio implements IAudio {
-	private SourceDataLine dateline;
+	private SourceDataLine dataline;
 	private float volume = 6f;
 	
 	public Audio(){
@@ -56,44 +56,44 @@ public class Audio implements IAudio {
 		AudioFormat af = new AudioFormat(h.getSamplingRate(), 16,
 				h.getChannels(), true, false);
 		try {
-			dateline = (SourceDataLine) AudioSystem.getSourceDataLine(af);
-			dateline.open(af, 8 * h.getPcmSize());
-			FloatControl gainControl = (FloatControl) dateline.getControl(FloatControl.Type.MASTER_GAIN);
+			dataline = (SourceDataLine) AudioSystem.getSourceDataLine(af);
+			dataline.open(af, 8 * h.getPcmSize());
+			FloatControl gainControl = (FloatControl) dataline.getControl(FloatControl.Type.MASTER_GAIN);
 			gainControl.setValue(this.volume); // Reduce volume by 10 decibels.
 		} catch (LineUnavailableException e) {
 			System.err.println("初始化音频输出失败。");
 			return false;
 		}
 		
-		dateline.start();
+		dataline.start();
 		return true;
 	}
 
 	@Override
 	public int write(byte[] b, int size) {
-		return dateline.write(b, 0, size);
+		return dataline.write(b, 0, size);
 	}
 
 	public void start(boolean b) {
-		if (dateline == null)
+		if (dataline == null)
 			return;
 		if (b)
-			dateline.start();
+			dataline.start();
 		else
-			dateline.stop();
+			dataline.stop();
 	}
 
 	@Override
 	public void drain() {
-		if (dateline != null)
-			dateline.drain();
+		if (dataline != null)
+			dataline.drain();
 	}
 
 	@Override
 	public void close() {
-		if (dateline != null) {
-			dateline.stop();
-			dateline.close();
+		if (dataline != null) {
+			dataline.stop();
+			dataline.close();
 		}
 	}
 
@@ -108,7 +108,7 @@ public class Audio implements IAudio {
 	 */
 	public void setVolume(float volume){
 		this.volume = volume;
-		FloatControl gainControl = (FloatControl) dateline.getControl(FloatControl.Type.MASTER_GAIN);
+		FloatControl gainControl = (FloatControl) dataline.getControl(FloatControl.Type.MASTER_GAIN);
 		gainControl.setValue(volume); // Reduce volume by 10 decibels.
 	}
 

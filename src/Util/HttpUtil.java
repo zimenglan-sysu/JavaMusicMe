@@ -98,6 +98,7 @@ public class HttpUtil{
                     bw = new BufferedOutputStream(new FileOutputStream(path));  
                     bw.write(result);  
                 } catch (Exception e) {  
+                	// pass
                 } finally {  
                     try {  
                         if (bw != null)  
@@ -121,7 +122,8 @@ public class HttpUtil{
     } 
 	
 	public static void main(String[] args) throws ClientProtocolException, IOException{
-		JSONArray result = HttpUtil.get("http://www.xiami.com/web/search-songs?_xiamitoken=452ee4737d91d56cea00cb5a38860058&key=我们的爱");
+		String url = "http://www.xiami.com/web/search-songs?_xiamitoken=452ee4737d91d56cea00cb5a38860058&key=我们的爱";
+		JSONArray result = HttpUtil.get(url);
 	}
 	
 }

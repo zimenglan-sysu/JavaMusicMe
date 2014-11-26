@@ -1,5 +1,6 @@
 package Model;
 
+// song info
 public class Song {
 	private String id;
 	private String title;
@@ -35,8 +36,4 @@ public class Song {
 		// TODO Auto-generated method stub
 		return this.title;
 	}
-	
-	
-	
-	
 }
